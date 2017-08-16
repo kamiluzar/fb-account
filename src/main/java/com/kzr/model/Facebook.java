@@ -8,10 +8,11 @@ import java.util.Comparator;
 import java.util.Map;
 
 /**
- * Created by Kamil on 2017-08-14.
+ * Created by Kamil on 2017-08-16.
  */
+
 @Component
-public class Account implements Comparable<Account> {
+public class Facebook implements Comparable<Facebook> {
     private String id;
     private BigDecimal birthday;
     private String firstname;
@@ -132,7 +133,7 @@ public class Account implements Comparable<Account> {
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "Facebook{" +
                 "id='" + id + '\'' +
                 ", birthday=" + birthday +
                 ", firstname='" + firstname + '\'' +
@@ -150,9 +151,9 @@ public class Account implements Comparable<Account> {
     }
 
     @Override
-    public int compareTo(Account account) {
-        return Comparator.comparing(Account::getFirstname)
-                .thenComparing(Account::getLastname)
-                .compare(this, account);
+    public int compareTo(Facebook facebook) {
+        return Comparator.comparing(Facebook::getFirstname)
+                .thenComparing(Facebook::getLastname)
+                .compare(this, facebook);
     }
 }
