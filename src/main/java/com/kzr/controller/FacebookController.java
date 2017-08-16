@@ -1,7 +1,7 @@
 package com.kzr.controller;
 
-import com.kzr.model.Account;
-import com.kzr.service.FacebookService;
+import com.kzr.model.Facebook;
+import com.kzr.service.FbAccountService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,42 +16,32 @@ import java.util.Set;
 @RestController
 public class FacebookController {
 
-    private final FacebookService facebookService;
-    private final Account account;
+    private final FbAccountService fbAccountService;
+    private final Facebook facebook;
 
-    public FacebookController(FacebookService facebookService, Account account) {
-        this.facebookService = facebookService;
-        this.account = account;
+    public FacebookController(FbAccountService fbAccountService, Facebook facebook) {
+        this.fbAccountService = fbAccountService;
+        this.facebook = facebook;
     }
 
     @RequestMapping("/fb/{id}")
-    public Account findById(@PathVariable String id) throws IOException {
-        Account account = facebookService.findById(id);
-        return account;
+    public Facebook findById(@PathVariable String id) throws IOException {
+        Facebook facebook = fbAccountService.findById(id);
+        return facebook;
     }
 
     @RequestMapping("/count")
     public Map<String, Long> findMostCommonWords() throws IOException {
-        return facebookService.findMostCommonWords();
+        return fbAccountService.findMostCommonWords();
     }
 
     @RequestMapping("/where/{word}")
     public Set<String> findPostIdsByKeyword(@PathVariable String word) throws IOException {
-        return facebookService.findPostIdsByKeyword(word);
+        return fbAccountService.findPostIdsByKeyword(word);
     }
 
-    @RequestMapping("/list")
-    public Set<Account> findAll() throws IOException {
-        return facebookService.findAll();
+    @RequestMapping("/sort-list")
+    public Set<Facebook> findAll() throws IOException {
+        return fbAccountService.findAll();
     }
-
-
-
 }
-
-
-
-
-
-
-
